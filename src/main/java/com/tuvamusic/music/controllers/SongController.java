@@ -6,9 +6,11 @@ package com.tuvamusic.music.controllers;
 
 import com.tuvamusic.music.model.Song;
 import com.tuvamusic.music.repository.SongRepository;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -26,13 +28,17 @@ public class SongController {
         return songRepository.findAll();
     }
     
-//    @GetMapping("/play")
-//    public Song getSongById(String id){
-//        return songRepository.getReferenceById(id);
-//    }
+    @GetMapping("/all")
+    public List<Song> getSongById(){
+        List<Song> list = new ArrayList<>();
+
+        songRepository.findAll().forEach(list::add);
+        return list;
+    }
     
     @GetMapping("/play")
-    public Song getSong(){
-        return new Song("AIDARBEKOV REMIX.mp3", "123");
+    public Song getSong(@RequestParam("fileName")String fileName){
+        
+        return songRepository.findById(fileName).get();
     }
 }

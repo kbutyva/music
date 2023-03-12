@@ -22,8 +22,5 @@ public class Song {
     
     @Id
     private String id;
-    
-    private String artist;
-    
-    
+        
 }

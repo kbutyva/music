@@ -15,22 +15,45 @@
             Привет, Друзья!
         </div>
         <br />
+        <form method="POST" enctype="multipart/form-data" action="/add">
+            <label>Киирери:</label>
+            <input name="file" type="file" accept=".mp3">
+            <button type="submit">Базар</button>
+        </form>
+        <br />
+        <div id="list">
+            list unavailable
+        </div>
+        <br />
         <div id="play">
-            I am here!
+            Player is not working
         </div>
         <script>
             $(document).ready(function () {
-                function player() {
-                    $.get('play', function (file) {
+                $.get('all', function (data) {
+                    console.log(data);
+                    let table = "<table><tr><th>Songs</th><th>Player</th></tr>";
+                    for(let i=0; i<data.length; i++){
+                        table =table + "<tr><td>"+data[i].id+"</td><td>"+"here can be player"+"</td></tr>";
+                        
+                    }
+                    table=table+"</table>";
+                    $('#list').html(table);
+                });
+            });
+        
+            function player(){
+                $.get('play', function (file) {
 
-                        let audio = "<audio src=\"../" + file.id + " controls></audio>";
+                        let audio = "<audio src=\"../"+file.id+"\" controls></audio>";
 
                         $('#play').html(audio);
                     });
-                }
-            });
+            }
 
-
+        </script>
+        <script>
+            ${document}.ready();
         </script>
         <div>
 
