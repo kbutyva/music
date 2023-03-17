@@ -25,38 +25,22 @@
             list unavailable
         </div>
         <br />
-        <div id="play">
-            Player is not working
-        </div>
+       
         <script>
             $(document).ready(function () {
                 $.get('all', function (data) {
                     console.log(data);
                     let table = "<table><tr><th>Songs</th><th>Player</th></tr>";
                     for(let i=0; i<data.length; i++){
-                        table =table + "<tr><td>"+data[i].id+"</td><td>"+"here can be player"+"</td></tr>";
+                        table =table + "<tr><td>"+data[i].id+"</td><td>"+"<audio src=\"../"+data[i].id+"\" controls></audio>"+"</td></tr>";
                         
                     }
                     table=table+"</table>";
                     $('#list').html(table);
                 });
             });
-        
-            function player(){
-                $.get('play', function (file) {
-
-                        let audio = "<audio src=\"../"+file.id+"\" controls></audio>";
-
-                        $('#play').html(audio);
-                    });
-            }
 
         </script>
-        <script>
-            ${document}.ready();
-        </script>
-        <div>
 
-        </div>
     </body>
 </html>
